@@ -1,0 +1,32 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class Book {
+    private String title;
+    private Author author;
+    private TableOfContents tableOfContents;
+    private List<Chapter> chapters = new ArrayList<>();
+
+    public Book(String title) {
+        this.title = title;
+    }
+
+    public void addAuthor(Author author) {
+        this.author = author;
+    }
+
+    public void addChapter(Chapter chapter) {
+        chapters.add(chapter);
+    }
+
+    public void setTableOfContents(TableOfContents toc) {
+        this.tableOfContents = toc;
+    }
+
+    public void print() {
+        System.out.println("Book: " + title);
+        if (author != null) author.print();
+        if (tableOfContents != null) tableOfContents.print();
+        for (Chapter c : chapters) c.print();
+    }
+}
