@@ -1,7 +1,6 @@
 public class Main {
 
     public static void main(String[] args) {
-        // Creăm cartea cu date modificate
         Book povesti = new Book("Povesti pentru copii");
         Author mariaPop = new Author("Maria Popescu");
         povesti.addAuthor(mariaPop);
