@@ -1,39 +1,13 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class TableOfContents implements Element {
-    private final List<Element> elements = new ArrayList<>();
-
     @Override
     public void print() {
-        System.out.println("Table of Contents:");
-        for (Element e : elements) {
-            e.print();
-        }
+        System.out.println("Table of Contents");
     }
 
     @Override
-    public void add(Element element) {
-        elements.add(element);
-    }
-
+    public void add(Element e) {}
     @Override
-    public void remove(Element element) {
-        elements.remove(element);
-    }
-
+    public void remove(Element e) {}
     @Override
-    public int get(Element element) {
-        return elements.indexOf(element);
-    }
-
-    @Override
-    public Element getParent() {
-        return null;
-    }
-
-    @Override
-    public void setParent(Element element) {
-
-    }
+    public Element get(int index) { return null; }
 }

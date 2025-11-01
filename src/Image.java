@@ -1,37 +1,19 @@
 public class Image implements Element {
-    private final String path;
+    private final String url;
 
-    public Image(String path) {
-        this.path = path;
+    public Image(String url) {
+        this.url = url;
     }
 
     @Override
     public void print() {
-        System.out.println("Image: " + path);
+        System.out.println("Image with name: " + this.url);
     }
 
     @Override
-    public void add(Element element) {
-        throw new UnsupportedOperationException("Cannot add element to Image");
-    }
-
+    public void add(Element element) {}
     @Override
-    public void remove(Element element) {
-        throw new UnsupportedOperationException("Cannot remove element from Image");
-    }
-
+    public void remove(Element element) {}
     @Override
-    public int get(Element element) {
-        throw new UnsupportedOperationException("No elements in Image");
-    }
-
-    @Override
-    public Element getParent() {
-        return null;
-    }
-
-    @Override
-    public void setParent(Element element) {
-
-    }
+    public Element get(int index) { return null; }
 }

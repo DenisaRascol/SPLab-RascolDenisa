@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Book {
+public class Book implements Element {
     private final String title;
     private final List<Author> authors = new ArrayList<>();
     private final List<Element> elements = new ArrayList<>();
@@ -14,19 +14,35 @@ public class Book {
         authors.add(author);
     }
 
-    public void addElement(Element element) {
+    public void addContent(Element element) {
         elements.add(element);
     }
 
+    @Override
     public void print() {
         System.out.println("Book: " + title);
-        System.out.print("Authors: ");
+        System.out.println("\nAuthors: ");
         for (Author a : authors) {
-            System.out.print(a.getName() + " ");
+            a.print();
         }
-        System.out.println("\nContent:");
+        System.out.println("");
         for (Element e : elements) {
             e.print();
         }
+    }
+
+    @Override
+    public void add(Element e) {
+        elements.add(e);
+    }
+
+    @Override
+    public void remove(Element e) {
+        elements.remove(e);
+    }
+
+    @Override
+    public Element get(int index) {
+        return elements.get(index);
     }
 }

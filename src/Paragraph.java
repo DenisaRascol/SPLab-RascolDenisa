@@ -11,27 +11,9 @@ public class Paragraph implements Element {
     }
 
     @Override
-    public void add(Element element) {
-        throw new UnsupportedOperationException("Cannot add element to Paragraph");
-    }
-
+    public void add(Element element) {}
     @Override
-    public void remove(Element element) {
-        throw new UnsupportedOperationException("Cannot remove element from Paragraph");
-    }
-
+    public void remove(Element element) {}
     @Override
-    public int get(Element element) {
-        throw new UnsupportedOperationException("No elements in Paragraph");
-    }
-
-    @Override
-    public Element getParent() {
-        return null;
-    }
-
-    @Override
-    public void setParent(Element element) {
-
-    }
+    public Element get(int index) { return null; }
 }
