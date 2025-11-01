@@ -1,0 +1,5 @@
+# Ignoră fișiere compilate
+*.class
+
+# Ignoră folderul de output
+/out/
