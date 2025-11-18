@@ -12,7 +12,7 @@ import ro.uvt.observer.AllBooksSubject;
 public class BooksController {
 
     private final BooksService service;
-    private final AllBooksSubject subject;   // 🔥 Adăugat pentru Observer
+    private final AllBooksSubject subject;   
 
     public BooksController(BooksService service, AllBooksSubject subject) {
         this.service = service;
