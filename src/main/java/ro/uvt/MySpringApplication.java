@@ -3,12 +3,17 @@ package ro.uvt;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
 import ro.uvt.difexamples.ClientComponent;
 import ro.uvt.difexamples.SingletonComponent;
 import ro.uvt.difexamples.TransientComponent;
 
 @SpringBootApplication
 public class MySpringApplication {
+
     public static void main(String[] args) {
         // pornește aplicația Spring și obține contextul DI
         ApplicationContext context = SpringApplication.run(MySpringApplication.class, args);
@@ -32,5 +37,16 @@ public class MySpringApplication {
         client.operation();
 
         System.out.println("\n--- END TEST ---\n");
+    }
+
+    // 🔥 AICI trebuie pus codul pentru CORS — sub metoda main() dar în interiorul clasei
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**");
+            }
+        };
     }
 }

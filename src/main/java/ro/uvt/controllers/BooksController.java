@@ -4,15 +4,19 @@ import org.springframework.web.bind.annotation.*;
 import ro.uvt.services.BooksService;
 import ro.uvt.commands.*;
 import ro.uvt.dto.BookDTO;
+import ro.uvt.models.Book;
+import ro.uvt.observer.AllBooksSubject;
 
 @RestController
 @RequestMapping("/books")
 public class BooksController {
 
     private final BooksService service;
+    private final AllBooksSubject subject;   // 🔥 Adăugat pentru Observer
 
-    public BooksController(BooksService service) {
+    public BooksController(BooksService service, AllBooksSubject subject) {
         this.service = service;
+        this.subject = subject;
     }
 
     @GetMapping
@@ -30,13 +34,23 @@ public class BooksController {
     @PostMapping
     public Object createBook(@RequestBody BookDTO dto) {
         Command cmd = new CreateBookCommand(service, dto.title, dto.authorIds);
-        return cmd.execute();
+        Book created = (Book) cmd.execute();
+
+        // 🔥 Notifică toți observatorii SSE
+        subject.add(created);
+
+        return created;
     }
 
     @PutMapping("/{id}")
     public Object updateBook(@PathVariable int id, @RequestBody BookDTO dto) {
         Command cmd = new UpdateBookCommand(service, id, dto.title, dto.authorIds);
-        return cmd.execute();
+        Book updated = (Book) cmd.execute();
+
+        // 🔥 Notifică observatorii și pentru update (opțional)
+        subject.add(updated);
+
+        return updated;
     }
 
     @DeleteMapping("/{id}")
